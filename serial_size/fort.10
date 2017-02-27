@@ -1,0 +1,9 @@
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =    0.0000000000000000
+  Stop time      =   0.10000000001000001
+  Time increment =   0.10000000001000001

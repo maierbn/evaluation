@@ -1,0 +1,73 @@
+[maierbn@lead evaluation]$ qconf -sql
+all.q
+big.q
+fast.q
+full.q
+s_x2.q
+s_x3.q
+s_x4.q
+s_x5.q
+s_x6.q
+s_x7.q
+single.q
+[maierbn@lead evaluation]$ qconf -sq all.q
+qname                 all.q
+hostlist              @allhosts
+seq_no                0
+load_thresholds       np_load_avg=1.75
+suspend_thresholds    NONE
+nsuspend              1
+suspend_interval      00:05:00
+priority              0
+min_cpu_interval      00:05:00
+processors            UNDEFINED
+qtype                 BATCH INTERACTIVE
+ckpt_list             NONE
+pe_list               make
+rerun                 FALSE
+slots                 1,[leadx03=32],[leadx02=32],[leadx04=32],[leadx05=32], \
+                      [leadx01=64],[lead=16],[leadx06=32],[leadx07=32]
+tmpdir                /tmp
+shell                 /bin/csh
+prolog                NONE
+epilog                NONE
+shell_start_mode      posix_compliant
+starter_method        NONE
+suspend_method        NONE
+resume_method         NONE
+terminate_method      NONE
+notify                00:00:60
+owner_list            NONE
+user_lists            NONE
+xuser_lists           NONE
+subordinate_list      NONE
+complex_values        NONE
+projects              NONE
+xprojects             NONE
+calendar              NONE
+initial_state         default
+s_rt                  INFINITY
+h_rt                  INFINITY
+s_cpu                 INFINITY
+h_cpu                 INFINITY
+s_fsize               INFINITY
+h_fsize               INFINITY
+s_data                INFINITY
+h_data                INFINITY
+s_stack               INFINITY
+h_stack               INFINITY
+s_core                INFINITY
+h_core                INFINITY
+s_rss                 INFINITY
+h_rss                 INFINITY
+s_vmem                INFINITY
+h_vmem                INFINITY
+
+# interactive:
+qsh
+qsh -q big.q -now no
+
+qrsh
+
+# http://gridscheduler.sourceforge.net/htmlman/htmlman1/qsub.html
+# http://gridscheduler.sourceforge.net/htmlman/manuals.html
