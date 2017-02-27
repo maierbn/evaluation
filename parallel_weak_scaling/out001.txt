@@ -1,0 +1,1212 @@
+03.02.2017 12:39:25 Program started.
+TAU: Error adding PAPI events: Event exists, but cannot be counted due to hardware resource limits
+--------------------------------------------------------------------------
+The library attempted to open the following supporting CUDA libraries,
+but each of them failed.  CUDA-aware support is disabled.
+libcuda.so.1: cannot open shared object file: No such file or directory
+libcuda.dylib: cannot open shared object file: No such file or directory
+/usr/lib64/libcuda.so.1: cannot open shared object file: No such file or directory
+/usr/lib64/libcuda.dylib: cannot open shared object file: No such file or directory
+If you are not interested in CUDA-aware support, then run with
+--mca mpi_cuda_support 0 to suppress this message.  If you are interested
+in CUDA-aware support, then try setting LD_LIBRARY_PATH to the location
+of libcuda.so.1 to get passed this issue.
+--------------------------------------------------------------------------
+OpenCMISS(Iron) version 0.4.0
+ Warning: NumberOfElementsInAtomicPortionPerDomain=           1  is smaller than X=           2 .
+ Therefore fibres will be subdivided.
+ Open file "/home/maierbn/Documents/opencmiss/examples/cuboid/input/MU_firing_times_10s.txt".
+ File  "/home/maierbn/Documents/opencmiss/examples/cuboid/input/innervation_zone_18.txt" contains           18  Entries, NumberOfFibres=          24 .
+ File  "/home/maierbn/Documents/opencmiss/examples/cuboid/input/MU_fibre_distribution_4050.txt" contains         4050  Entries, NumberOfFibres=          24 .
+ 
+ ---------- Timing parameters -------------
+  Main loop, Δt =  0.10, dt =  0.10
+  - stimulation enabled:  Δt =  0.10
+  - stimulation disabled: Δt =  0.90
+ 
+- MAIN_TIME_LOOP,         Δt = .10, dt = .10000, # Iter:     2
+  - MONODOMAIN_TIME_LOOP, Δt = .1000, dt = .00500, # Iter:    21
+    - SolverDAE,                      dt = .00010, # Iter:    50
+    - SolverParabolic, (dynamic backward euler)
+  - ELASTICITY_LOOP,                               # Iter:     5
+    - SolverFE,                 # Iter (max):  500, Tol.: 0.1000E-07
+      - LinearSolverFE, (direct solver)
+ 
+ ---------- Problem size parameters ------------------------------------------
+# global FE-elements:           2,      4,      1, Total:            8
+# local nodes per element:     31,      2,      3, Total:          186
+                  NumberOfInSeriesFibres:      1
+      NumberOfFibreLinesPerGlobalElement:      6
+              NumberOfGlobalElementLines:      4
+                 NumberOfFibreLinesTotal:     24
+                          NumberOfFibres:     24
+               NumberOfElementsMPerFibre:     60
+                   NumberOfNodesPerFibre:     61
+                          NumberOfNodesM:   1464
+                       NumberOfElementsM:   1440
+ 
+                         NumberOfDomains:      1
+NumberOfElementsInAtomicPortionPerDomain:      1  (X:     2)
+ ------------------------------------------------------------------------------
+ 
+ Old mechanics formulation that works in parallel.
+ Custom Profiling is disabled. (Enable with -DUSE_CUSTOM_PROFILING)
+ TAU Profiling is enabled.
+ Running with            1  processes.
+uri: "/home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml"
+Getting absolute URL for: /home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml
+absolute path
+C uri = "file:///home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml"
+Creating CellMLModelDefinition from the URL: file:///home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml
+whoo hoo!
+Model is correctly constrained
+Compile command: "gcc -fPIC -O3 -shared -x c -o ./tmp.cellml2code.aGVMhM/cellml2code.c50BTd.so tmp.cellml2code.aGVMhM/cellml2code.c50BTd"
+getting index of variable: 'wal_environment/vS'
+getting index of variable: 'wal_environment/vS'
+getting index of variable: 'wal_environment/vS'
+getting index of variable: 'razumova/stress'
+getting index of variable: 'razumova/stress'
+Output EMG Data ...   done
+ 1.) Start solve before stimulation
+     MemoryConsumption:  0.438 GB (  438312960 B), Resident:   0.117 GB
+     (Resident has no soft limit)
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =    0.0000000000000000
+  Stop time      =   0.10000000001000001
+  Time increment =   0.10000000001000001
+           0
+ 2.) Simulate with stimulation
+     MemoryConsumption:  0.578 GB (  578228224 B), Resident:   0.260 GB
+     (Resident has no soft limit)
+     Nonliner Solver duration:    1.0120000000000005       s
+t = .00000 s
+getting index of variable: 'wal_environment/I_HH'
+   Solve with stimulation,    time span:    0.0000000000000000       to   0.10000000000000001     
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =    0.0000000000000000
+  Stop time      =   0.10000000000000001
+  Time increment =   0.10000000001000001
+           0
+     MemoryConsumption:  0.727 GB (  726724608 B), Resident:   0.408 GB
+     (Resident has no soft limit)
+   Solve without stimulation, time span:   0.10000000000000001       to    1.0000000000000000     
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =   0.10000000000000001
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           0
+
+Time control loop iteration: 1
+  Current time   =   0.20000000001000001
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           1
+
+Time control loop iteration: 2
+  Current time   =   0.30000000002000005
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           2
+
+Time control loop iteration: 3
+  Current time   =   0.40000000003000002
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           3
+
+Time control loop iteration: 4
+  Current time   =   0.50000000004000000
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           4
+
+Time control loop iteration: 5
+  Current time   =   0.60000000004999998
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           5
+
+Time control loop iteration: 6
+  Current time   =   0.70000000005999996
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           6
+
+Time control loop iteration: 7
+  Current time   =   0.80000000006999994
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           7
+
+Time control loop iteration: 8
+  Current time   =   0.90000000007999992
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           8
+     MemoryConsumption:  2.132 GB ( 2132090880 B), Resident:   1.814 GB
+     (Resident has no soft limit)
+Output EMG Data ...   done
+C destroying CellML model definition.
+     MemoryConsumption:  2.045 GB ( 2045022208 B), Resident:   1.796 GB
+     (Resident has no soft limit)
+ Warning! Identifier for Duration, '1. problem solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1/2 pre solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'problem_solver_pre_solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1. problem cellml solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'cellml solve (*)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.1. cellml field2cellml update' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.2. cellml field var get' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.3. cellml data get' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.4. cellml integrate' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'cellml call rhs' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.5. cellml data restore' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.6. cellml field update' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'problem_solver_post_solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2. dynamic linear solve (*)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.1 assemble equations' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.2 get loop time' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3 solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.4 back-substitute' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1/2 post solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.1 dynamic mean predicted calculate' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.2 dynamic assemble' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.3 solve linear system' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.4 update dependent field' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.1 pre solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.2 apply incremented BC' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3 solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1 static nonlinear solve (*)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.1 apply BC, assemble' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.2 assemble interface conditions' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3 solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3.1 newton update solution vector' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3.2 newton Petsc solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3.3 newton diagnostics' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.4 update residual' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.4 post solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss DP' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss DP' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss DP' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss INTG' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss INTG' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss INTG' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage diag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage diag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage diag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, offdiag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, offdiag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, offdiag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, row ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, row ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, row ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, col. ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, col. ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, col. ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage (local to global mapping)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage (local to global mapping)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage (local to global mapping)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector petsc' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector petsc' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector petsc' does not exist. 
+           0  existing records: 
+ 
+---------------------Profiling Info-----------------------
+Timing
+Memory Consumption while Timing
+Static Memory Consumption
+ Total:                 0 B,                 0 objects
+----------------------------------------------------------
+
+ 
+ --------------------------------------------------
+ Process            0
+ Timing:
+    Ode Solver:             53.816000000000074       s
+    Parabolic Solver:       1.8480000000000416       s
+    Nonlinear FE Solver  
+      before Simulation:    1.0120000000000005       s
+    Nonlinear FE Solver:    1.6999999999999886       s
+ 
+03.02.2017 12:40:38 Program successfully completed.
+03.02.2017 12:49:41 Program started.
+TAU: Error adding PAPI events: Event exists, but cannot be counted due to hardware resource limits
+--------------------------------------------------------------------------
+The library attempted to open the following supporting CUDA libraries,
+but each of them failed.  CUDA-aware support is disabled.
+libcuda.so.1: cannot open shared object file: No such file or directory
+libcuda.dylib: cannot open shared object file: No such file or directory
+/usr/lib64/libcuda.so.1: cannot open shared object file: No such file or directory
+/usr/lib64/libcuda.dylib: cannot open shared object file: No such file or directory
+If you are not interested in CUDA-aware support, then run with
+--mca mpi_cuda_support 0 to suppress this message.  If you are interested
+in CUDA-aware support, then try setting LD_LIBRARY_PATH to the location
+of libcuda.so.1 to get passed this issue.
+--------------------------------------------------------------------------
+OpenCMISS(Iron) version 0.4.0
+ Warning: NumberOfElementsInAtomicPortionPerDomain=           1  is smaller than X=           2 .
+ Therefore fibres will be subdivided.
+ Open file "/home/maierbn/Documents/opencmiss/examples/cuboid/input/MU_firing_times_10s.txt".
+ File  "/home/maierbn/Documents/opencmiss/examples/cuboid/input/innervation_zone_18.txt" contains           18  Entries, NumberOfFibres=          24 .
+ File  "/home/maierbn/Documents/opencmiss/examples/cuboid/input/MU_fibre_distribution_4050.txt" contains         4050  Entries, NumberOfFibres=          24 .
+ 
+ ---------- Timing parameters -------------
+  Main loop, Δt =  0.10, dt =  0.10
+  - stimulation enabled:  Δt =  0.10
+  - stimulation disabled: Δt =  0.90
+ 
+- MAIN_TIME_LOOP,         Δt = .10, dt = .10000, # Iter:     2
+  - MONODOMAIN_TIME_LOOP, Δt = .1000, dt = .00500, # Iter:    21
+    - SolverDAE,                      dt = .00010, # Iter:    50
+    - SolverParabolic, (dynamic backward euler)
+  - ELASTICITY_LOOP,                               # Iter:     5
+    - SolverFE,                 # Iter (max):  500, Tol.: 0.1000E-07
+      - LinearSolverFE, (direct solver)
+ 
+ ---------- Problem size parameters ------------------------------------------
+# global FE-elements:           2,      4,      1, Total:            8
+# local nodes per element:     31,      2,      3, Total:          186
+                  NumberOfInSeriesFibres:      1
+      NumberOfFibreLinesPerGlobalElement:      6
+              NumberOfGlobalElementLines:      4
+                 NumberOfFibreLinesTotal:     24
+                          NumberOfFibres:     24
+               NumberOfElementsMPerFibre:     60
+                   NumberOfNodesPerFibre:     61
+                          NumberOfNodesM:   1464
+                       NumberOfElementsM:   1440
+ 
+                         NumberOfDomains:      1
+NumberOfElementsInAtomicPortionPerDomain:      1  (X:     2)
+ ------------------------------------------------------------------------------
+ 
+ Old mechanics formulation that works in parallel.
+ Custom Profiling is disabled. (Enable with -DUSE_CUSTOM_PROFILING)
+ TAU Profiling is enabled.
+ Running with            1  processes.
+uri: "/home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml"
+Getting absolute URL for: /home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml
+absolute path
+C uri = "file:///home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml"
+Creating CellMLModelDefinition from the URL: file:///home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml
+whoo hoo!
+Model is correctly constrained
+Compile command: "gcc -fPIC -O3 -shared -x c -o ./tmp.cellml2code.yxlx3S/cellml2code.vOfWoe.so tmp.cellml2code.yxlx3S/cellml2code.vOfWoe"
+getting index of variable: 'wal_environment/vS'
+getting index of variable: 'wal_environment/vS'
+getting index of variable: 'wal_environment/vS'
+getting index of variable: 'razumova/stress'
+getting index of variable: 'razumova/stress'
+Output EMG Data ...   done
+ 1.) Start solve before stimulation
+     MemoryConsumption:  0.438 GB (  438312960 B), Resident:   0.117 GB
+     (Resident has no soft limit)
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =    0.0000000000000000
+  Stop time      =   0.10000000001000001
+  Time increment =   0.10000000001000001
+           0
+ 2.) Simulate with stimulation
+     MemoryConsumption:  0.578 GB (  578228224 B), Resident:   0.260 GB
+     (Resident has no soft limit)
+     Nonliner Solver duration:    1.0920000000000005       s
+t = .00000 s
+getting index of variable: 'wal_environment/I_HH'
+   Solve with stimulation,    time span:    0.0000000000000000       to   0.10000000000000001     
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =    0.0000000000000000
+  Stop time      =   0.10000000000000001
+  Time increment =   0.10000000001000001
+           0
+     MemoryConsumption:  0.727 GB (  726724608 B), Resident:   0.408 GB
+     (Resident has no soft limit)
+   Solve without stimulation, time span:   0.10000000000000001       to    1.0000000000000000     
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =   0.10000000000000001
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           0
+
+Time control loop iteration: 1
+  Current time   =   0.20000000001000001
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           1
+
+Time control loop iteration: 2
+  Current time   =   0.30000000002000005
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           2
+
+Time control loop iteration: 3
+  Current time   =   0.40000000003000002
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           3
+
+Time control loop iteration: 4
+  Current time   =   0.50000000004000000
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           4
+
+Time control loop iteration: 5
+  Current time   =   0.60000000004999998
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           5
+
+Time control loop iteration: 6
+  Current time   =   0.70000000005999996
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           6
+
+Time control loop iteration: 7
+  Current time   =   0.80000000006999994
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           7
+
+Time control loop iteration: 8
+  Current time   =   0.90000000007999992
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           8
+     MemoryConsumption:  2.132 GB ( 2132090880 B), Resident:   1.814 GB
+     (Resident has no soft limit)
+Output EMG Data ...   done
+C destroying CellML model definition.
+     MemoryConsumption:  2.045 GB ( 2045022208 B), Resident:   1.796 GB
+     (Resident has no soft limit)
+ Warning! Identifier for Duration, '1. problem solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1/2 pre solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'problem_solver_pre_solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1. problem cellml solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'cellml solve (*)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.1. cellml field2cellml update' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.2. cellml field var get' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.3. cellml data get' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.4. cellml integrate' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'cellml call rhs' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.5. cellml data restore' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.6. cellml field update' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'problem_solver_post_solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2. dynamic linear solve (*)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.1 assemble equations' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.2 get loop time' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3 solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.4 back-substitute' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1/2 post solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.1 dynamic mean predicted calculate' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.2 dynamic assemble' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.3 solve linear system' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.4 update dependent field' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.1 pre solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.2 apply incremented BC' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3 solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1 static nonlinear solve (*)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.1 apply BC, assemble' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.2 assemble interface conditions' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3 solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3.1 newton update solution vector' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3.2 newton Petsc solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3.3 newton diagnostics' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.4 update residual' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.4 post solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss DP' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss DP' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss DP' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss INTG' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss INTG' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss INTG' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage diag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage diag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage diag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, offdiag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, offdiag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, offdiag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, row ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, row ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, row ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, col. ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, col. ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, col. ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage (local to global mapping)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage (local to global mapping)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage (local to global mapping)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector petsc' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector petsc' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector petsc' does not exist. 
+           0  existing records: 
+ 
+---------------------Profiling Info-----------------------
+Timing
+Memory Consumption while Timing
+Static Memory Consumption
+ Total:                 0 B,                 0 objects
+----------------------------------------------------------
+
+ 
+ --------------------------------------------------
+ Process            0
+ Timing:
+    Ode Solver:             57.319999999999823       s
+    Parabolic Solver:       1.8240000000000265       s
+    Nonlinear FE Solver  
+      before Simulation:    1.0920000000000005       s
+    Nonlinear FE Solver:    1.7960000000000207       s
+ 
+03.02.2017 12:50:58 Program successfully completed.
+03.02.2017 13:00:03 Program started.
+TAU: Error adding PAPI events: Event exists, but cannot be counted due to hardware resource limits
+--------------------------------------------------------------------------
+The library attempted to open the following supporting CUDA libraries,
+but each of them failed.  CUDA-aware support is disabled.
+libcuda.so.1: cannot open shared object file: No such file or directory
+libcuda.dylib: cannot open shared object file: No such file or directory
+/usr/lib64/libcuda.so.1: cannot open shared object file: No such file or directory
+/usr/lib64/libcuda.dylib: cannot open shared object file: No such file or directory
+If you are not interested in CUDA-aware support, then run with
+--mca mpi_cuda_support 0 to suppress this message.  If you are interested
+in CUDA-aware support, then try setting LD_LIBRARY_PATH to the location
+of libcuda.so.1 to get passed this issue.
+--------------------------------------------------------------------------
+OpenCMISS(Iron) version 0.4.0
+ Warning: NumberOfElementsInAtomicPortionPerDomain=           1  is smaller than X=           2 .
+ Therefore fibres will be subdivided.
+ Open file "/home/maierbn/Documents/opencmiss/examples/cuboid/input/MU_firing_times_10s.txt".
+ File  "/home/maierbn/Documents/opencmiss/examples/cuboid/input/innervation_zone_18.txt" contains           18  Entries, NumberOfFibres=          24 .
+ File  "/home/maierbn/Documents/opencmiss/examples/cuboid/input/MU_fibre_distribution_4050.txt" contains         4050  Entries, NumberOfFibres=          24 .
+ 
+ ---------- Timing parameters -------------
+  Main loop, Δt =  0.10, dt =  0.10
+  - stimulation enabled:  Δt =  0.10
+  - stimulation disabled: Δt =  0.90
+ 
+- MAIN_TIME_LOOP,         Δt = .10, dt = .10000, # Iter:     2
+  - MONODOMAIN_TIME_LOOP, Δt = .1000, dt = .00500, # Iter:    21
+    - SolverDAE,                      dt = .00010, # Iter:    50
+    - SolverParabolic, (dynamic backward euler)
+  - ELASTICITY_LOOP,                               # Iter:     5
+    - SolverFE,                 # Iter (max):  500, Tol.: 0.1000E-07
+      - LinearSolverFE, (direct solver)
+ 
+ ---------- Problem size parameters ------------------------------------------
+# global FE-elements:           2,      4,      1, Total:            8
+# local nodes per element:     31,      2,      3, Total:          186
+                  NumberOfInSeriesFibres:      1
+      NumberOfFibreLinesPerGlobalElement:      6
+              NumberOfGlobalElementLines:      4
+                 NumberOfFibreLinesTotal:     24
+                          NumberOfFibres:     24
+               NumberOfElementsMPerFibre:     60
+                   NumberOfNodesPerFibre:     61
+                          NumberOfNodesM:   1464
+                       NumberOfElementsM:   1440
+ 
+                         NumberOfDomains:      1
+NumberOfElementsInAtomicPortionPerDomain:      1  (X:     2)
+ ------------------------------------------------------------------------------
+ 
+ Old mechanics formulation that works in parallel.
+ Custom Profiling is disabled. (Enable with -DUSE_CUSTOM_PROFILING)
+ TAU Profiling is enabled.
+ Running with            1  processes.
+uri: "/home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml"
+Getting absolute URL for: /home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml
+absolute path
+C uri = "file:///home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml"
+Creating CellMLModelDefinition from the URL: file:///home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml
+whoo hoo!
+Model is correctly constrained
+Compile command: "gcc -fPIC -O3 -shared -x c -o ./tmp.cellml2code.qcQSDB/cellml2code.HBwlE3.so tmp.cellml2code.qcQSDB/cellml2code.HBwlE3"
+getting index of variable: 'wal_environment/vS'
+getting index of variable: 'wal_environment/vS'
+getting index of variable: 'wal_environment/vS'
+getting index of variable: 'razumova/stress'
+getting index of variable: 'razumova/stress'
+Output EMG Data ...   done
+ 1.) Start solve before stimulation
+     MemoryConsumption:  0.438 GB (  438312960 B), Resident:   0.117 GB
+     (Resident has no soft limit)
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =    0.0000000000000000
+  Stop time      =   0.10000000001000001
+  Time increment =   0.10000000001000001
+           0
+ 2.) Simulate with stimulation
+     MemoryConsumption:  0.578 GB (  578228224 B), Resident:   0.260 GB
+     (Resident has no soft limit)
+     Nonliner Solver duration:    1.0120000000000022       s
+t = .00000 s
+getting index of variable: 'wal_environment/I_HH'
+   Solve with stimulation,    time span:    0.0000000000000000       to   0.10000000000000001     
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =    0.0000000000000000
+  Stop time      =   0.10000000000000001
+  Time increment =   0.10000000001000001
+           0
+     MemoryConsumption:  0.727 GB (  726724608 B), Resident:   0.409 GB
+     (Resident has no soft limit)
+   Solve without stimulation, time span:   0.10000000000000001       to    1.0000000000000000     
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =   0.10000000000000001
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           0
+
+Time control loop iteration: 1
+  Current time   =   0.20000000001000001
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           1
+
+Time control loop iteration: 2
+  Current time   =   0.30000000002000005
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           2
+
+Time control loop iteration: 3
+  Current time   =   0.40000000003000002
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           3
+
+Time control loop iteration: 4
+  Current time   =   0.50000000004000000
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           4
+
+Time control loop iteration: 5
+  Current time   =   0.60000000004999998
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           5
+
+Time control loop iteration: 6
+  Current time   =   0.70000000005999996
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           6
+
+Time control loop iteration: 7
+  Current time   =   0.80000000006999994
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           7
+
+Time control loop iteration: 8
+  Current time   =   0.90000000007999992
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           8
+     MemoryConsumption:  2.132 GB ( 2132090880 B), Resident:   1.814 GB
+     (Resident has no soft limit)
+Output EMG Data ...   done
+C destroying CellML model definition.
+     MemoryConsumption:  2.045 GB ( 2045022208 B), Resident:   1.797 GB
+     (Resident has no soft limit)
+ Warning! Identifier for Duration, '1. problem solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1/2 pre solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'problem_solver_pre_solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1. problem cellml solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'cellml solve (*)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.1. cellml field2cellml update' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.2. cellml field var get' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.3. cellml data get' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.4. cellml integrate' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'cellml call rhs' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.5. cellml data restore' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.6. cellml field update' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'problem_solver_post_solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2. dynamic linear solve (*)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.1 assemble equations' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.2 get loop time' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3 solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.4 back-substitute' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1/2 post solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.1 dynamic mean predicted calculate' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.2 dynamic assemble' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.3 solve linear system' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.4 update dependent field' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.1 pre solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.2 apply incremented BC' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3 solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1 static nonlinear solve (*)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.1 apply BC, assemble' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.2 assemble interface conditions' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3 solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3.1 newton update solution vector' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3.2 newton Petsc solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3.3 newton diagnostics' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.4 update residual' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.4 post solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss DP' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss DP' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss DP' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss INTG' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss INTG' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss INTG' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage diag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage diag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage diag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, offdiag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, offdiag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, offdiag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, row ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, row ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, row ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, col. ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, col. ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, col. ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage (local to global mapping)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage (local to global mapping)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage (local to global mapping)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector petsc' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector petsc' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector petsc' does not exist. 
+           0  existing records: 
+ 
+---------------------Profiling Info-----------------------
+Timing
+Memory Consumption while Timing
+Static Memory Consumption
+ Total:                 0 B,                 0 objects
+----------------------------------------------------------
+
+ 
+ --------------------------------------------------
+ Process            0
+ Timing:
+    Ode Solver:             53.344000000000108       s
+    Parabolic Solver:       1.8039999999999452       s
+    Nonlinear FE Solver  
+      before Simulation:    1.0120000000000022       s
+    Nonlinear FE Solver:    1.7199999999999847       s
+ 
+03.02.2017 13:01:16 Program successfully completed.
+03.02.2017 13:12:25 Program started.
+TAU: Error adding PAPI events: Event exists, but cannot be counted due to hardware resource limits
+--------------------------------------------------------------------------
+The library attempted to open the following supporting CUDA libraries,
+but each of them failed.  CUDA-aware support is disabled.
+libcuda.so.1: cannot open shared object file: No such file or directory
+libcuda.dylib: cannot open shared object file: No such file or directory
+/usr/lib64/libcuda.so.1: cannot open shared object file: No such file or directory
+/usr/lib64/libcuda.dylib: cannot open shared object file: No such file or directory
+If you are not interested in CUDA-aware support, then run with
+--mca mpi_cuda_support 0 to suppress this message.  If you are interested
+in CUDA-aware support, then try setting LD_LIBRARY_PATH to the location
+of libcuda.so.1 to get passed this issue.
+--------------------------------------------------------------------------
+OpenCMISS(Iron) version 0.4.0
+ Warning: NumberOfElementsInAtomicPortionPerDomain=           1  is smaller than X=           2 .
+ Therefore fibres will be subdivided.
+ Open file "/home/maierbn/Documents/opencmiss/examples/cuboid/input/MU_firing_times_10s.txt".
+ File  "/home/maierbn/Documents/opencmiss/examples/cuboid/input/innervation_zone_18.txt" contains           18  Entries, NumberOfFibres=          24 .
+ File  "/home/maierbn/Documents/opencmiss/examples/cuboid/input/MU_fibre_distribution_4050.txt" contains         4050  Entries, NumberOfFibres=          24 .
+ 
+ ---------- Timing parameters -------------
+  Main loop, Δt =  0.10, dt =  0.10
+  - stimulation enabled:  Δt =  0.10
+  - stimulation disabled: Δt =  0.90
+ 
+- MAIN_TIME_LOOP,         Δt = .10, dt = .10000, # Iter:     2
+  - MONODOMAIN_TIME_LOOP, Δt = .1000, dt = .00500, # Iter:    21
+    - SolverDAE,                      dt = .00010, # Iter:    50
+    - SolverParabolic, (dynamic backward euler)
+  - ELASTICITY_LOOP,                               # Iter:     5
+    - SolverFE,                 # Iter (max):  500, Tol.: 0.1000E-07
+      - LinearSolverFE, (direct solver)
+ 
+ ---------- Problem size parameters ------------------------------------------
+# global FE-elements:           2,      4,      1, Total:            8
+# local nodes per element:     31,      2,      3, Total:          186
+                  NumberOfInSeriesFibres:      1
+      NumberOfFibreLinesPerGlobalElement:      6
+              NumberOfGlobalElementLines:      4
+                 NumberOfFibreLinesTotal:     24
+                          NumberOfFibres:     24
+               NumberOfElementsMPerFibre:     60
+                   NumberOfNodesPerFibre:     61
+                          NumberOfNodesM:   1464
+                       NumberOfElementsM:   1440
+ 
+                         NumberOfDomains:      1
+NumberOfElementsInAtomicPortionPerDomain:      1  (X:     2)
+ ------------------------------------------------------------------------------
+ 
+ Old mechanics formulation that works in parallel.
+ Custom Profiling is disabled. (Enable with -DUSE_CUSTOM_PROFILING)
+ TAU Profiling is enabled.
+ Running with            1  processes.
+uri: "/home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml"
+Getting absolute URL for: /home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml
+absolute path
+C uri = "file:///home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml"
+Creating CellMLModelDefinition from the URL: file:///home/maierbn/Documents/opencmiss/examples/cuboid/input/slow_TK_2014_12_08.xml
+whoo hoo!
+Model is correctly constrained
+Compile command: "gcc -fPIC -O3 -shared -x c -o ./tmp.cellml2code.NU0cbw/cellml2code.lNK8PY.so tmp.cellml2code.NU0cbw/cellml2code.lNK8PY"
+getting index of variable: 'wal_environment/vS'
+getting index of variable: 'wal_environment/vS'
+getting index of variable: 'wal_environment/vS'
+getting index of variable: 'razumova/stress'
+getting index of variable: 'razumova/stress'
+Output EMG Data ...   done
+ 1.) Start solve before stimulation
+     MemoryConsumption:  0.438 GB (  438312960 B), Resident:   0.117 GB
+     (Resident has no soft limit)
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =    0.0000000000000000
+  Stop time      =   0.10000000001000001
+  Time increment =   0.10000000001000001
+           0
+ 2.) Simulate with stimulation
+     MemoryConsumption:  0.578 GB (  578228224 B), Resident:   0.260 GB
+     (Resident has no soft limit)
+     Nonliner Solver duration:    1.8239999999999998       s
+t = .00000 s
+getting index of variable: 'wal_environment/I_HH'
+   Solve with stimulation,    time span:    0.0000000000000000       to   0.10000000000000001     
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =    0.0000000000000000
+  Stop time      =   0.10000000000000001
+  Time increment =   0.10000000001000001
+           0
+     MemoryConsumption:  0.727 GB (  726720512 B), Resident:   0.409 GB
+     (Resident has no soft limit)
+   Solve without stimulation, time span:   0.10000000000000001       to    1.0000000000000000     
+
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =   0.10000000000000001
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           0
+
+Time control loop iteration: 1
+  Current time   =   0.20000000001000001
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           1
+
+Time control loop iteration: 2
+  Current time   =   0.30000000002000005
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           2
+
+Time control loop iteration: 3
+  Current time   =   0.40000000003000002
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           3
+
+Time control loop iteration: 4
+  Current time   =   0.50000000004000000
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           4
+
+Time control loop iteration: 5
+  Current time   =   0.60000000004999998
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           5
+
+Time control loop iteration: 6
+  Current time   =   0.70000000005999996
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           6
+
+Time control loop iteration: 7
+  Current time   =   0.80000000006999994
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           7
+
+Time control loop iteration: 8
+  Current time   =   0.90000000007999992
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+           8
+     MemoryConsumption:  2.132 GB ( 2132090880 B), Resident:   1.814 GB
+     (Resident has no soft limit)
+Output EMG Data ...   done
+C destroying CellML model definition.
+     MemoryConsumption:  2.045 GB ( 2045022208 B), Resident:   1.797 GB
+     (Resident has no soft limit)
+ Warning! Identifier for Duration, '1. problem solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1/2 pre solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'problem_solver_pre_solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1. problem cellml solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'cellml solve (*)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.1. cellml field2cellml update' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.2. cellml field var get' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.3. cellml data get' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.4. cellml integrate' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'cellml call rhs' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.5. cellml data restore' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1.6. cellml field update' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, 'problem_solver_post_solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2. dynamic linear solve (*)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.1 assemble equations' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.2 get loop time' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3 solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.4 back-substitute' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.1/2 post solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.1 dynamic mean predicted calculate' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.2 dynamic assemble' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.3 solve linear system' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.2.3.4 update dependent field' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.1 pre solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.2 apply incremented BC' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3 solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1 static nonlinear solve (*)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.1 apply BC, assemble' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.2 assemble interface conditions' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3 solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3.1 newton update solution vector' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3.2 newton Petsc solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.3.3 newton diagnostics' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.3.1.4 update residual' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Duration, '1.3.4 post solve' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss DP' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss DP' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss DP' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss INTG' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss INTG' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector cmiss INTG' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage diag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage diag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage diag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, offdiag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, offdiag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, offdiag' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, row ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, row ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, row ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, col. ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, col. ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage, col. ind.' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage (local to global mapping)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage (local to global mapping)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed matrix petsc, compr. row storage (local to global mapping)' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector petsc' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector petsc' does not exist. 
+           0  existing records: 
+ Warning! Identifier for Memory, 'distributed vector petsc' does not exist. 
+           0  existing records: 
+ 
+---------------------Profiling Info-----------------------
+Timing
+Memory Consumption while Timing
+Static Memory Consumption
+ Total:                 0 B,                 0 objects
+----------------------------------------------------------
+
+ 
+ --------------------------------------------------
+ Process            0
+ Timing:
+    Ode Solver:             85.464000000000070       s
+    Parabolic Solver:       3.6000000000000085       s
+    Nonlinear FE Solver  
+      before Simulation:    1.8239999999999998       s
+    Nonlinear FE Solver:    3.0520000000000067       s
+ 
+03.02.2017 13:14:23 Program successfully completed.

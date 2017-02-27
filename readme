@@ -1,0 +1,2 @@
+in evaluation: helium with run_helium (weak scaling to 48)
+in paraallel_weak_scaling: neon with run_neon.sh (weak scaling)
