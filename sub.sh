@@ -6,7 +6,10 @@ echo "SCENARIO=$SCENARIO"
 
 #qsub -q fast.q $OPENCMISS_EVALUATION_DIR/$SCENARIO/run.sh -j eo -o $OPENCMISS_EVALUATION_DIR/$SCENARIO
 export nproc=96
-qsub -q full.q -pe full_mpi_rr $nproc $OPENCMISS_EVALUATION_DIR/$SCENARIO/run.sh -o $OPENCMISS_EVALUATION_DIR/$SCENARIO
+qsub -q full.q -pe full_mpi_rr $nproc $OPENCMISS_EVALUATION_DIR/$SCENARIO/run.sh -o $OPENCMISS_EVALUATION_DIR/$SCENARIO | tee pid.txt
+export pid=$(cat pid.txt | cut -c 10-14)
+export status=$(qstat | grep $pid | cut -c 41-43)   # e.g. 'r ' for running or 'qw' for queued or '  ' for finished
+
 
 #qsub /home/maierbn/opencmiss/examples/cuboid/evaluation/testmpi.sh
 
