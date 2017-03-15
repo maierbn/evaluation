@@ -10,14 +10,15 @@ echo "OPENCMISS_REL_DIR=$OPENCMISS_REL_DIR, OPENCMISS_REL_DIR=$OPENCMISS_REL_DIR
 
 function check_exit()
 {
-   # Current hour of the day (0-23)
-   HOUR=$(date +%H)
    while true; do
-      if [ $HOUR -ge 7 ] && [ $HOUR -le 20 ] ; then
-         echo "Current time: $(date)"
+      HOUR=$(date +%H)
+      echo "Current time: $(date)"
+
+      if [ $HOUR -ge 7 ] && [ $HOUR -le 20 ] ; then    # wait if 7 <= hour <= 20
          echo "Don't run program because it is between 7 and 20."
          sleep 1h
       else
+         echo "OK"
          break
       fi
    done
