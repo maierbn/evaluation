@@ -33,10 +33,12 @@ report_filename = "duration_neon_with_profiling.csv"
 #report_filename = "duration_neon_without_profiling.csv"
 #report_filename = "duration_neon_tau_profiling.csv"
 report_filename = "lead_weak_scaling.csv"
+report_filename = "duration_weak_scaling2.csv"
+report_filename = "lead_weak_scaling2.csv"
+report_filename = "duration_neon.csv"
 
 
-
-caption = u'Weak scaling, cuboid muscle, lead'
+caption = u'Weak scaling, cuboid muscle, neon'
 #caption = u'Weak scaling, cuboid muscle, helium'
 #caption = u'Weak scaling, cuboid muscle, bwunicluster'
 
@@ -193,12 +195,21 @@ descriptions = {
   87:  "distributed vector petsc (memory)",
   88:  "distributed vector petsc (size 1 el.)",
   89:  "distributed vector petsc (n. objects)",
+  90:  "FE solver (pre load)",
+  91:  "ODE solver (pre load)",
+  92:  "parabolic solver (pre load)",
+  93:  "file output (pre load)",
+  94:  "export EMG (user)",
+  95:  "export EMG (system)",
+  96:  "file output (user)",
+  97:  "file output (system)",
+  98:  "file output (system, pre load)"
 }
 
 
-max_index = 90
+max_index = 99
 
-float_indices = range(10, 21) + range(31, 66)
+float_indices = range(10, 21) + range(31, 66) + range(90, max_index)
 string_indices = [0, 1]
 
 # all other are int_indices
@@ -302,7 +313,7 @@ print ""
 print ""
   
 print "{:10}, {:6}, {:6}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}".\
-format("key", "nproc", "F", "#M", "#FE", "ODE", "Parabolic", "FE", "pre FE")
+format("key", "nproc", "F", "#M", "#FE", "ODE", "Parabolic", "FE", "file output")
 for key in datasets:
   
   print "{:10}, {:6}, {:6}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}".\
@@ -310,7 +321,7 @@ for key in datasets:
   fo.str_format_seconds(datasets[key]["value"][17]), 
   fo.str_format_seconds(datasets[key]["value"][18]), 
   fo.str_format_seconds(datasets[key]["value"][19]), 
-  fo.str_format_seconds(datasets[key]["value"][20]))
+  fo.str_format_seconds(datasets[key]["value"][96]))
   
   
 print ""
@@ -347,7 +358,7 @@ for key in datasets:
 plt.rcParams.update({'font.size': 16})
 plt.rcParams['lines.linewidth'] = 2
 output_path = ""
-plotdata = dict()
+plotdata = collections.OrderedDict()
 xdata = Set()
 plotkeys = Set()
 
@@ -379,7 +390,7 @@ for key in datasets:
 # 18 Parabolic
 # 19 FE
 # 20 FE before Main Sim
-  for plotkey in [17, 18, 19, 20]:
+  for plotkey in [17, 18, 19, 96]:
     
     if plotkey not in plotdata:
       plotdata[plotkey] = dict()
@@ -410,14 +421,15 @@ colors = {
   17: "yo-",
   18: "ro-",
   19: "go-",
-  20: "bo-",
+  96: "bo-",
 }
 labels = {
   0 : "Duration main simulation",
   17: "ODE solver",
   18: "Parabolic solver",
-  19: "FE solver main-sim",
+  19: "FE solver",
   20: "FE solver pre-sim",
+  96: "File output"
 }
 
 for plotkey in plotkeys:

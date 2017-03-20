@@ -18,12 +18,20 @@ show_plots = True
 if len(sys.argv) >= 2:
   show_plots = False
   
-remove_outlier = False
+remove_outlier = True
 outlier_top = 1
-outlier_bottom = 1
+outlier_bottom = 0
   
 # read csv file
-report_filename = "duration_timing.csv";
+report_filename = "duration.00000.csv"
+report_filename = "duration_lead.csv"
+report_filename = "lead2.csv"
+
+
+caption = u'Serial scaling, cuboid muscle, lead'
+#caption = u'Weak scaling, cuboid muscle, helium'
+#caption = u'Weak scaling, cuboid muscle, bwunicluster'
+
 print "report file: {}".format(report_filename)
 data = []
 with open(report_filename) as csvfile:
@@ -76,10 +84,127 @@ def isint(value):
 # 18 Parabolic
 # 19 FE
 # 20 FE before Main Sim
+# 21 memory consumption after simulation
+# 22 memory consumption at shutdown
+# 23 Parabolic reason
+# 24 Newton reason
+# 25 parabolic n. iter
+# 26 min
+# 27 max
+# 28 newton n. iter
+# 29 min
+# 30 max 
+descriptions = {
+   0:  "Stamp",
+   1:  "Host",
+   2:  "NProc",
+   3:  "X",
+   4:  "Y",
+   5:  "Z",
+   6:  "F",
+   7:  "Total FE",
+   8:  "Total M",
+   9:  "End Time",
+  10:  "Dur. Init",
+  11:  "Stretch Sim",
+  12:  "Int. Init",
+  13:  "Main Sim",
+  14:  "Total",
+  15:  "Total (User)",
+  16:  "Total (System) ",
+  17:  "ODE",
+  18:  "Parabolic",
+  19:  "FE",
+  20:  "FE before Main Sim",
+  21:  "Mem. Consumption after 1st timestep",
+  22:  "Memory Consumption At End ",
+  23:  "Parabolic reason",
+  24:  "Newton reason",
+  25:  "parabolic n. iter",
+  26:  "min",
+  27:  "max",
+  28:  "newton n. iter",
+  29:  "min",
+  30:  "max",
+  31:  "1. problem solve",
+  32:  "1.1/2 pre solve",
+  33:  "problem_solver_pre_solve",
+  34:  "1.1. problem cellml solve",
+  35:  "cellml solve (*)",
+  36:  "1.1.1. cellml field2cellml update",
+  37:  "1.1.2. cellml field var get",
+  38:  "1.1.3. cellml data get",
+  39:  "1.1.4. cellml integrate",
+  40:  "cellml call rhs",
+  41:  "1.1.5. cellml data restore",
+  42:  "1.1.6. cellml field update",
+  43:  "problem_solver_post_solve",
+  44:  "1.2. dynamic linear solve (*)",
+  45:  "1.2.1 assemble equations",
+  46:  "1.2.2 get loop time",
+  47:  "1.2.3 solve",
+  48:  "1.2.4 back-substitute",
+  49:  "1.1/2 post solve",
+  50:  "1.2.3.1 dynamic mean predicted calculate",
+  51:  "1.2.3.2 dynamic assemble",
+  52:  "1.2.3.3 solve linear system",
+  53:  "1.2.3.4 update dependent field",
+  54:  "1.3.1 pre solve",
+  55:  "1.3.2 apply incremented BC",
+  56:  "1.3.3 solve",
+  57:  "1.3.3.1 static nonlinear solve (*)",
+  58:  "1.3.3.1.1 apply BC, assemble",
+  59:  "1.3.3.1.2 assemble interface conditions",
+  60:  "1.3.3.1.3 solve",
+  61:  "1.3.3.1.3.1 newton update solution vector",
+  62:  "1.3.3.1.3.2 newton Petsc solve",
+  63:  "1.3.3.1.3.3 newton diagnostics",
+  64:  "1.3.3.1.4 update residual",
+  65:  "1.3.4 post solve",
+  66:  "distributed vector cmiss DP (memory)",
+  67:  "distributed vector cmiss DP (size 1 el.)",
+  68:  "distributed vector cmiss DP (n. objects)",
+  69:  "distributed vector cmiss INTG (memory)",
+  70:  "distributed vector cmiss INTG (size 1 el.)",
+  71:  "distributed vector cmiss INTG (n. objects)",
+  72:  "distributed matrix petsc, compr. row storage diag (memory)",
+  73:  "distributed matrix petsc, compr. row storage diag (size 1 el.)",
+  74:  "distributed matrix petsc, compr. row storage diag (n. objects)",
+  75:  "distributed matrix petsc, compr. row storage, offdiag (memory)",
+  76:  "distributed matrix petsc, compr. row storage, offdiag (size 1 el.)",
+  77:  "distributed matrix petsc, compr. row storage, offdiag (n. objects)",
+  78:  "distributed matrix petsc, compr. row storage, row ind. (memory)",
+  79:  "distributed matrix petsc, compr. row storage, row ind. (size 1 el.)",
+  80:  "distributed matrix petsc, compr. row storage, row ind. (n. objects)",
+  81:  "distributed matrix petsc, compr. row storage, col. ind. (memory)",
+  82:  "distributed matrix petsc, compr. row storage, col. ind. (size 1 el.)",
+  83:  "distributed matrix petsc, compr. row storage, col. ind. (n. objects)",
+  84:  "distributed matrix petsc, compr. row storage (local to global mapping) (memory)",
+  85:  "distributed matrix petsc, compr. row storage (local to global mapping) (size 1 el.)",
+  86:  "distributed matrix petsc, compr. row storage (local to global mapping) (n. objects)",
+  87:  "distributed vector petsc (memory)",
+  88:  "distributed vector petsc (size 1 el.)",
+  89:  "distributed vector petsc (n. objects)",
+  90:  "FE solver (pre load)",
+  91:  "ODE solver (pre load)",
+  92:  "parabolic solver (pre load)",
+  93:  "file output (pre load)",
+  94:  "export EMG (user)",
+  95:  "export EMG (system)",
+  96:  "file output (user)",
+  97:  "file output (system)",
+  98:  "file output (system, pre load)"
+}
 
-max_index = 20
-int_indices = [2, 3, 4, 5, 6, 7, 8, 9]
-float_indices = [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+
+max_index = 99
+
+float_indices = range(10, 21) + range(31, 66) + range(90, max_index)
+string_indices = [0, 1]
+
+# all other are int_indices
+int_indices = list(set(range(max_index)) - set(float_indices) - set(string_indices))
+
 
 def extract_data(data):
 
@@ -96,20 +221,18 @@ def extract_data(data):
     # copy dataset to new_data
     new_data = dataset
     
+    # fill dataset to size of max_index
+    if len(dataset) < max_index+1:
+      new_data += (max_index+1-len(dataset)) * [0]
+      
     # extract some values
-    
     for index in int_indices:
       new_data[index] = int(new_data[index])     if isint(new_data[index])    else 0
     for index in float_indices:
       new_data[index] = float(new_data[index])     if isfloat(new_data[index])    else 0.0
       
     # define sorting key
-    key = "{:03d}".format(new_data[7])+"|"+str(new_data[6])  # sort by FE
-    #key = "{:06d}".format(new_data[8])  # sort by M
-      
-    # fill dataset to size of max_index
-    if len(dataset) < max_index:
-      a += (len(dataset)-max_index) * [0]
+    key = "{:04d}".format(new_data[7])
       
     # store extracted values
     if key not in datasets:
@@ -161,497 +284,17 @@ def extract_data(data):
   return datasets
   
 datasets = extract_data(data)
-#######################################################
-# plot
-# x-axis: fe
-# y-axis: user time
-# datasets: f
-
-plt.rcParams.update({'font.size': 16})
-plt.rcParams['lines.linewidth'] = 2
-output_path = ""
-plotdata = dict()
-xdata = Set()
-plotkeys = Set()
-
-for key in datasets:
-  
-  dataset = datasets[key]['value']
-  variances = datasets[key]['variance']
-  f = dataset[6]
-  fe = dataset[7]
-  user = dataset[15]
-  ode_time = dataset[17]
-  parabolic_time = dataset[18]
-  fe_time = dataset[19]
-  pre_fe_time = dataset[20]
-  
-  plotkey = (f)
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = dict()
-    plotdata[plotkey]['variance'] = dict()
-    
-  xvalue = fe
-  yvalue = user
-  yvalue_variance = 0
-    
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-
-for plotkey in plotkeys:
-  print plotkey
-  
-xlist = list(xdata)
-
-######################
-# plot times
-plt.figure(2, figsize=(10,8))
-plotdata = dict()
-xdata = Set()
-plotkeys = Set()
-
-colors = {
-  (1) : "ro",
-  (2) : "go",
-  (3) : "bo",
-  (4) : "co",
-  (5) : "mo",
-}
-labels = {
-  (1) : "F=1",
-  (2) : "F=2",
-  (3) : "F=3",
-  (4) : "F=4",
-  (5) : "F=5",
-}
-for key in datasets:
-  
-  dataset = datasets[key]['value']
-  variances = datasets[key]['variance']
-  f = dataset[6]
-  fe = dataset[7]
-  user = dataset[14]
-  
-  ode_time = dataset[17]
-  parabolic_time = dataset[18]
-  fe_time = dataset[19]
-  pre_fe_time = dataset[20]
-  
-  ode_time_v = variances[17]
-  parabolic_time_v = variances[18]
-  fe_time_v = variances[19]
-  pre_fe_time_v = variances[20]
-  
-  #print "f=",f,", fe=",fe
-  if f != 1.0:
-    continue
-  
-  ## ode
-  plotkey = 0
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = dict()
-    plotdata[plotkey]['variance'] = dict()
-    
-  xvalue = fe
-  yvalue = ode_time
-  yvalue_variance = ode_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-  ## parabolic
-  plotkey = 1
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = dict()
-    plotdata[plotkey]['variance'] = dict()
-    
-  xvalue = fe
-  yvalue = parabolic_time
-  yvalue_variance = parabolic_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-  ## fe_time
-  plotkey = 2
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = dict()
-    plotdata[plotkey]['variance'] = dict()
-    
-  xvalue = fe
-  yvalue = fe_time
-  yvalue_variance = fe_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-  ## pre_fe
-  plotkey = 3
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = dict()
-    plotdata[plotkey]['variance'] = dict()
-    
-  xvalue = fe
-  yvalue = pre_fe_time
-  yvalue_variance = pre_fe_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-xlist = list(xdata)
-
-colors = {
-  0 : "yo-",
-  1 : "ro-",
-  2 : "go-",
-  3 : "bo-",
-}
-labels = {
-  0 : "Duration ODE solver",
-  1 : "Duration Parabolic solver",
-  2 : "Duration FE solver (main sim)",
-  3 : "Duration FE solver (pre-sim)",
-}
-
-for plotkey in plotkeys:
-  xlist = list(plotdata[plotkey]["value"])
-  ylist = [y for y in plotdata[plotkey]["value"].values()]
-  yerr = [y for y in plotdata[plotkey]['variance'].values()]
-
-  plt.errorbar(xlist, ylist, fmt=colors[plotkey], yerr=yerr, label=labels[plotkey])
-  
-ax = plt.gca()
-#ax.set_yscale('log', basey=10) 
-plt.title(u'duration solvers, cuboid muscle, serial run, F=1')
-plt.xlabel('finite elements total')
-plt.ylabel('duration (s)')
-plt.legend(loc='best')
-plt.grid(which='both')
-plt.tight_layout()
-plt.savefig(output_path+SCENARIO+'_timing_f1.png')
-
-######################
-# plot times F=2
-plt.figure(3, figsize=(10,8))
-plotdata = dict()
-xdata = Set()
-plotkeys = Set()
-
-for key in datasets:
-  
-  dataset = datasets[key]['value']
-  variances = datasets[key]['variance']
-  f = dataset[6]
-  fe = dataset[7]
-  user = dataset[14]
-  
-  ode_time = dataset[17]
-  parabolic_time = dataset[18]
-  fe_time = dataset[19]
-  pre_fe_time = dataset[20]
-  
-  ode_time_v = variances[17]
-  parabolic_time_v = variances[18]
-  fe_time_v = variances[19]
-  pre_fe_time_v = variances[20]
-  
-  #print "f=",f,", fe=",fe
-  if f != 2.0:
-    continue
-  
-  ## ode
-  plotkey = 0
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = collections.OrderedDict()
-    plotdata[plotkey]['variance'] = collections.OrderedDict()
-    
-  xvalue = fe
-  yvalue = ode_time
-  yvalue_variance = ode_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-  ## parabolic
-  plotkey = 1
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = collections.OrderedDict()
-    plotdata[plotkey]['variance'] = collections.OrderedDict()
-    
-  xvalue = fe
-  yvalue = parabolic_time
-  yvalue_variance = parabolic_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-  ## fe_time
-  plotkey = 2
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = collections.OrderedDict()
-    plotdata[plotkey]['variance'] = collections.OrderedDict()
-    
-  xvalue = fe
-  yvalue = fe_time
-  yvalue_variance = fe_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-  ## pre_fe
-  plotkey = 3
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = collections.OrderedDict()
-    plotdata[plotkey]['variance'] = collections.OrderedDict()
-    
-  xvalue = fe
-  yvalue = pre_fe_time
-  yvalue_variance = pre_fe_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-xlist = list(xdata)
-
-for plotkey in plotkeys:
-  xlist = list(plotdata[plotkey]["value"])
-  ylist = [y for y in plotdata[plotkey]["value"].values()]
-  yerr = [y for y in plotdata[plotkey]['variance'].values()]
-
-  plt.errorbar(xlist, ylist, fmt=colors[plotkey], yerr=yerr, label=labels[plotkey])
-  
-ax = plt.gca()
-#ax.set_yscale('log', basey=10) 
-plt.title(u'Laufzeit F=2')
-plt.xlabel('Anzahl Finite Elemente')
-plt.ylabel('Laufzeit (user) (s)')
-plt.legend(loc='best')
-plt.grid(which='both')
-plt.tight_layout()
-plt.savefig(output_path+SCENARIO+'_timing_f2.png')
-
-######################
-# plot times 1D elements
-plt.figure(4, figsize=(10,8))
-plotdata = dict()
-xdata = Set()
-plotkeys = Set()
-
-for key in datasets:
-  
-  dataset = datasets[key]['value']
-  variances = datasets[key]['variance']
-  f = dataset[6]
-  fe = dataset[7]
-  user = dataset[14]
-  m = dataset[8]
-  
-  ode_time = dataset[17]
-  parabolic_time = dataset[18]
-  fe_time = dataset[19]
-  pre_fe_time = dataset[20]
-  
-  ode_time_v = variances[17]
-  parabolic_time_v = variances[18]
-  fe_time_v = variances[19]
-  pre_fe_time_v = variances[20]
-  
-  ## ode
-  plotkey = 0
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = collections.OrderedDict()
-    plotdata[plotkey]['variance'] = collections.OrderedDict()
-    
-  xvalue = m
-  yvalue = ode_time
-  yvalue_variance = ode_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-  ## parabolic
-  plotkey = 1
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = collections.OrderedDict()
-    plotdata[plotkey]['variance'] = collections.OrderedDict()
-    
-  yvalue = parabolic_time
-  yvalue_variance = parabolic_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-  ## fe_time
-  plotkey = 2
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = collections.OrderedDict()
-    plotdata[plotkey]['variance'] = collections.OrderedDict()
-    
-  yvalue = fe_time
-  yvalue_variance = fe_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-  ## pre_fe
-  plotkey = 3
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = collections.OrderedDict()
-    plotdata[plotkey]['variance'] = collections.OrderedDict()
-    
-  yvalue = pre_fe_time
-  yvalue_variance = pre_fe_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-xlist = list(xdata)
-
-for plotkey in plotkeys:
-  xlist = list(plotdata[plotkey]["value"])
-  ylist = [y for y in plotdata[plotkey]["value"].values()]
-  yerr = [y for y in plotdata[plotkey]['variance'].values()]
-
-  plt.errorbar(xlist, ylist, fmt=colors[plotkey], yerr=yerr, label=labels[plotkey])
-  
-ax = plt.gca()
-#ax.set_yscale('log', basey=10) 
-plt.title(u'cuboid muscle, serial run')
-plt.xlabel('1D elements total')
-plt.ylabel('duration (s)')
-plt.legend(loc='best')
-plt.grid(which='both')
-plt.tight_layout()
-plt.savefig(output_path+SCENARIO+'_timing_m.png')
-
-######################
-# plot times serial
-plt.figure(5, figsize=(10,8))
-plotdata = dict()
-xdata = Set()
-plotkeys = Set()
-
-colors = {
-  1 : "yo-",
-  2 : "ro-",
-  3 : "go-",
-  4 : "bo-",
-  5 : "mo-",
-}
-labels = {
-  1 : "F=1",
-  2 : "F=2",
-  3 : "F=3",
-  4 : "F=4",
-  5 : "F=5",
-}
-
-for key in datasets:
-  
-  dataset = datasets[key]['value']
-  variances = datasets[key]['variance']
-  f = dataset[6]
-  fe = dataset[7]
-  user = dataset[14]
-  m = dataset[8]
-  
-  ode_time = dataset[17]
-  parabolic_time = dataset[18]
-  fe_time = dataset[19]
-  pre_fe_time = dataset[20]
-  
-  ode_time_v = variances[17]
-  parabolic_time_v = variances[18]
-  fe_time_v = variances[19]
-  pre_fe_time_v = variances[20]
-  
-  plotkey = f
-  if plotkey not in plotdata:
-    plotdata[plotkey] = dict()
-    plotdata[plotkey]['value'] = collections.OrderedDict()
-    plotdata[plotkey]['variance'] = collections.OrderedDict()
-    
-  xvalue = m
-  yvalue = parabolic_time
-  yvalue_variance = parabolic_time_v
-  
-  plotdata[plotkey]['value'][xvalue] = yvalue
-  plotdata[plotkey]['variance'][xvalue] = yvalue_variance
-  xdata.add(xvalue)
-  plotkeys.add(plotkey)
-  
-xlist = list(xdata)
-
-for plotkey in plotkeys:
-  xlist = list(plotdata[plotkey]["value"])
-  ylist = [y for y in plotdata[plotkey]["value"].values()]
-  yerr = [y for y in plotdata[plotkey]['variance'].values()]
-
-  plt.errorbar(xlist, ylist, fmt=colors[plotkey], yerr=yerr, label=labels[plotkey])
-  
-ax = plt.gca()
-#ax.set_yscale('log', basey=10) 
-plt.title(u'duration parabolic (1D) solver, cuboid muscle, serial run.\nF is the number of serial half-sarcomeres per muscle fibres')
-plt.xlabel('1D elements total')
-plt.ylabel('duration (s)')
-plt.legend(loc='best')
-plt.grid(which='both')
-plt.tight_layout()
-plt.savefig(output_path+SCENARIO+'_timing_f.png')
-
-if show_plots:
-  plt.show()
-#quit()
 
 ###############################################################
 # output to console
 print ""
 print "------------- duration -------------------------------------------"
-print "{:10}, {:6},  {:6}, {:10}, {:10}, {:10}, {:10}".\
-format("key", "F", "#M", "init", "stretch", "init", "main")
+print "{:10}, {:6}, {:6}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}".\
+format("key", "nproc", "F", "#M", "#FE", "init", "stretch", "init", "main")
 for key in datasets:
   
-  print "{:10}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}".\
-  format(key, datasets[key]["value"][6], datasets[key]["value"][8], 
+  print "{:10}, {:6}, {:6}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}".\
+  format(key, datasets[key]["value"][2], datasets[key]["value"][6], datasets[key]["value"][8], datasets[key]["value"][7], 
   fo.str_format_seconds(datasets[key]["value"][10]), 
   fo.str_format_seconds(datasets[key]["value"][11]), 
   fo.str_format_seconds(datasets[key]["value"][12]), 
@@ -659,13 +302,144 @@ for key in datasets:
 print ""
 print ""
   
-print "{:10}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}".\
-format("key", "F", "#M", "ODE", "Parabolic", "FE", "pre FE")
+print "{:10}, {:6}, {:6}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}".\
+format("key", "nproc", "F", "#M", "#FE", "ODE", "Parabolic", "FE", "file output")
 for key in datasets:
   
-  print "{:10}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}".\
-  format(key, datasets[key]["value"][6], datasets[key]["value"][8], 
-  fo.str_format_seconds(datasets[key]["value"][16]), 
+  print "{:10}, {:6}, {:6}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}".\
+  format(key, datasets[key]["value"][2], datasets[key]["value"][6], datasets[key]["value"][8],  datasets[key]["value"][7], 
   fo.str_format_seconds(datasets[key]["value"][17]), 
   fo.str_format_seconds(datasets[key]["value"][18]), 
-  fo.str_format_seconds(datasets[key]["value"][19]))
+  fo.str_format_seconds(datasets[key]["value"][19]), 
+  fo.str_format_seconds(datasets[key]["value"][96]))
+  
+  
+if False:
+  print ""
+  print "--------- timing -------------------------"
+  for key in datasets:
+    print "nproc: {}".format(datasets[key]["value"][2])
+    for item in range(31, 66):
+      print "   ", str(item).ljust(2), descriptions[item].ljust(50), ": ", datasets[key]["value"][item]
+
+
+  
+print ""
+print "------------- n iterations -------------------------------------------"
+print "{:10}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}, {:10}, {:10}, {:10}, {:10}".\
+format("key", "F", "#M", "Parabolic", "Newton", "p. n. iter", "min", "max", "n. n. iter", "min", "max" )
+for key in datasets:
+  
+  print "{:10}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}, {:10}, {:10}, {:10}, {:10}".\
+  format(key, datasets[key]["value"][6], datasets[key]["value"][8], 
+  datasets[key]["value"][23],
+  datasets[key]["value"][24],
+  datasets[key]["value"][25],
+  datasets[key]["value"][26],
+  datasets[key]["value"][27],
+  datasets[key]["value"][28],
+  datasets[key]["value"][29],
+  datasets[key]["value"][30])
+###############################################################
+#######################################################
+# plot
+# x-axis: n elements
+# y-axis: total time
+
+plt.rcParams.update({'font.size': 16})
+plt.rcParams['lines.linewidth'] = 2
+output_path = ""
+plotdata = collections.OrderedDict()
+xdata = Set()
+plotkeys = Set()
+
+for key in datasets:
+  
+  dataset = datasets[key]['value']
+  variances = datasets[key]['variance']
+  nproc = dataset[2]
+  nFE = dataset[7]
+  main_sim = dataset[13]
+  
+# 13 duration main sim
+# 17 ODE
+# 18 Parabolic
+# 19 FE
+# 20 FE before Main Sim
+  for plotkey in [15, 17, 18, 19, 96]:
+    
+    if plotkey not in plotdata:
+      plotdata[plotkey] = dict()
+      plotdata[plotkey]['value'] = collections.OrderedDict()
+      plotdata[plotkey]['variance'] = collections.OrderedDict()
+      
+    xvalue = nFE
+    yvalue = dataset[plotkey]
+    yvalue_variance = variances[plotkey]
+      
+    plotdata[plotkey]['value'][xvalue] = yvalue
+    plotdata[plotkey]['variance'][xvalue] = yvalue_variance
+    xdata.add(xvalue)
+    plotkeys.add(plotkey)
+
+xlist = sorted(xdata)
+
+######################
+# plot serial scaling
+plt.figure(2, figsize=(10,8))
+
+# 13 duration main sim
+# 17 ODE
+# 18 Parabolic
+# 19 FE
+# 20 FE before Main Sim
+colors = {
+  13: "ko-",
+  15: "ko-",
+  17: "yo-",
+  18: "ro-",
+  19: "go-",
+  96: "bo-",
+}
+labels = {
+  13: "Duration main simulation",
+  15: "Duration main simulation",
+  17: "ODE solver",
+  18: "Parabolic solver",
+  19: "FE solver",
+  96: "File output",
+}
+#plotkeys = [13, 17, 18, 19, 20]
+
+for plotkey in plotkeys:
+    
+  xlist = sorted(plotdata[plotkey]["value"])
+  ylist = [y for y in plotdata[plotkey]["value"].values()]
+  yerr = [y for y in plotdata[plotkey]['variance'].values()]
+
+  plt.errorbar(xlist, ylist, fmt=colors[plotkey], yerr=yerr, label=labels[plotkey])
+  
+ax = plt.gca()
+#ax.set_xscale('log', basey=2) 
+#ax.set_yscale('log', basey=10) 
+#ax.set_xticks([1,2,4,8,12,16,24,32,64])
+plt.xlabel('number of finite elements')
+plt.ylabel('duration (s)')
+plt.legend(loc='best')
+plt.grid(which='both')
+
+# twin axes for processes
+#ax2 = ax.twiny()
+#ax2.set_xlim(ax.get_xlim())
+#ax2.set_xticks(xlist)
+#ax2.set_xticklabels([1,2,4,8,12,16,24,32,64])
+#ax2.set_xlabel(r"Number of processes")
+
+plt.title(caption, y=1.1)
+plt.tight_layout()
+plt.savefig(output_path+SCENARIO+'_weak_scaling.png')
+
+if show_plots:
+  plt.show()
+#quit()
+
