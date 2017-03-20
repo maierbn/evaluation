@@ -24,7 +24,9 @@ function check_exit()
    done
 }
 
-while true; do
+echo "weak scaling"
+
+#while true; do
   check_exit
   mpiexec -n 1 $OPENCMISS_REL_DIR/cuboid $OPENCMISS_INPUT_DIR 3 8 1 1
   check_exit
@@ -46,25 +48,4 @@ while true; do
   check_exit
   mpiexec -n 96 $OPENCMISS_REL_DIR/cuboid $OPENCMISS_INPUT_DIR 12 32 6 1
   check_exit
-done
-
-
-xstart=3
-ystart=4
-zstart=1
-
-for factor in {0..8}; do
-  x=$(python -c "a=${xstart}*(1.2**${factor}); print a")
-  y=$(python -c "a=${ystart}*(1.2**${factor}); print a")
-  z=$(python -c "a=${zstart}*(1.2**${factor}); print a")
-
-  nproc=$(python -c "t=${x}*${y}*${z}; t0=${xstart}*${ystart}*${zstart}; nproc = float(t)/t0; print nproc")
-
-  x=$(python -c "print '{:d}'.format(int(round(${x})))")
-  y=$(python -c "print '{:d}'.format(int(round(${y})))")
-  z=$(python -c "print '{:d}'.format(int(round(${z})))")
-  nproc=$(python -c "print '{:d}'.format(int(round(${nproc})))")
-
-  echo "x=$x, y=$y, z=$z, nproc=$nproc"
-  mpiexec -n $nproc $OPENCMISS_REL_DIR/cuboid $OPENCMISS_INPUT_DIR $x $y $z 1
-done
+#done
