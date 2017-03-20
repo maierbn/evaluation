@@ -1,0 +1,11 @@
+#!/bin/bash
+#PBS -N weak_scaling
+#PBS -l walltime=00:01:00
+#PBS -l nodes=1:ppn=24
+###PBS -l nodes=6:ppn=24
+  
+# Change to the direcotry that the job was submitted from
+cd $PBS_O_WORKDIR
+
+# Launch the parallel job to the allocated compute nodes
+$OPENCMISS_EVALUATION_DIR/parallel_weak_scaling/run_hazelhen.sh
