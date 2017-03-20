@@ -1,1 +1,49 @@
 
+Control loop: MAIN_TIME_LOOP
+  Control loop level = 1
+  Sub loop index     = 0
+
+Time control loop iteration: 0
+  Current time   =   0.10000000000000001
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+
+Time control loop iteration: 1
+  Current time   =   0.20000000001000001
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+
+Time control loop iteration: 2
+  Current time   =   0.30000000002000005
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+
+Time control loop iteration: 3
+  Current time   =   0.40000000003000002
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+
+Time control loop iteration: 4
+  Current time   =   0.50000000004000000
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+
+Time control loop iteration: 5
+  Current time   =   0.60000000004999998
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+
+Time control loop iteration: 6
+  Current time   =   0.70000000005999996
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+
+Time control loop iteration: 7
+  Current time   =   0.80000000006999994
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001
+
+Time control loop iteration: 8
+  Current time   =   0.90000000007999992
+  Stop time      =    1.0000000000000000
+  Time increment =   0.10000000001000001

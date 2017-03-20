@@ -27,7 +27,7 @@ report_filename = "duration.00000.csv"
 report_filename = "duration_strong_scaling.csv"
 report_filename = "duration_strong_scaling2.csv"
 report_filename = "duration_strong_scaling3.csv"
-#report_filename = "duration_strong_scaling_bwunicluster.csv"
+report_filename = "strong_scaling_lead.csv"
 
 print "report file: {}".format(report_filename)
 data = []
@@ -254,21 +254,22 @@ mc = float(m1) - size['001']*ms
 print 'mc = ', fo.str_format_memory(mc)
 print ""
 
-print "{:10}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}, {:20}, {:12}".\
-format("key", "F", "#M", "factor to 1", "#3D el", "factor", "nprc * #el", "mc estimate", "mc est./m")
-for key in datasets:
-  m = datasets[key]["value"][21]
-  p = datasets[key]["value"][2]
-  
-  print "{:10}, {:6}, {:6}, {:10.8}, {:10}, {:10.8}, {:10}, {:20}, {:10.8}".\
-  format(key, datasets[key]["value"][6], datasets[key]["value"][8],
-  float(m)/m1,
-  size[key],
-  float(size[key])/size['001'],
-  float(p)*size[key],
-  fo.str_format_memory(float(m) - size[key]*ms),
-  (float(m) - size[key]*ms) / m
-  )
+if False:
+  print "{:10}, {:6}, {:6}, {:10}, {:10}, {:10}, {:10}, {:20}, {:12}".\
+  format("key", "F", "#M", "factor to 1", "#3D el", "factor", "nprc * #el", "mc estimate", "mc est./m")
+  for key in datasets:
+    m = datasets[key]["value"][21]
+    p = datasets[key]["value"][2]
+    
+    print "{:10}, {:6}, {:6}, {:10.8}, {:10}, {:10.8}, {:10}, {:20}, {:10.8}".\
+    format(key, datasets[key]["value"][6], datasets[key]["value"][8],
+    float(m)/m1,
+    size[key],
+    float(size[key])/size['001'],
+    float(p)*size[key],
+    fo.str_format_memory(float(m) - size[key]*ms),
+    (float(m) - size[key]*ms) / m
+    )
   
 print ""
 print "------------- n iterations -------------------------------------------"
@@ -431,7 +432,7 @@ labels = {
 
 for plotkey in plotkeys:
   
-  xlist = list(plotdata[plotkey]["value"])
+  xlist = sorted(plotdata[plotkey]["value"])
   ylist = [y/1024./1024./1024. for y in plotdata[plotkey]["value"].values()]
   yerr = [y/1024./1024./1024. for y in plotdata[plotkey]['variance'].values()]
 
