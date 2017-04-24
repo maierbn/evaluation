@@ -1,8 +1,11 @@
 *.ex*
 *.out
-fort.5
-fort.7
+out*
+fort.*
+*profile*
 tmp*
 profiling*
 EMG.out*
 duration.0*
+pwd.txt
+iterations*
